@@ -2,12 +2,12 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 
-<h1>Cadastrar local</h1>
+<h1>Editar local</h1>
 
 <br/>
 <br/>
 
-<form:form modelAttribute="newPlaceForm" method="post" action="/places/register">
+<form:form modelAttribute="editPlaceForm" method="post" action="/places/edit/${id}">
 
     <label>Nome:</label>
     <form:input path="name"/>
@@ -35,8 +35,7 @@
     <br/>
     <br/>
 
-    <form:button>Cadastrar</form:button>
-
+    <form:button>Editar</form:button>
 
     <script src="/assets/js/locais/buscarLocal.js"></script>
 </form:form>

@@ -1,14 +1,11 @@
 package br.com.alura.dojoplaces.place;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.PastOrPresent;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDateTime;
 
@@ -33,15 +30,53 @@ public class Place {
     @UpdateTimestamp
     private LocalDateTime updateDateTime;
 
-    public Place(PlaceDto placeDto) {
-        this.city = placeDto.city();
-        this.code = placeDto.code();
-        this.name = placeDto.name();
-        this.neighbourhood = placeDto.neighbourhood();
-        this.creationDateTime = LocalDateTime.now();
-    }
-
     public Place() {
     }
+
+    public Place(String city, String code, String name, String neighbourhood, LocalDateTime creationDateTime) {
+        this.city = city;
+        this.code = code;
+        this.name = name;
+        this.neighbourhood = neighbourhood;
+        this.creationDateTime = creationDateTime;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public String getNeighbourhood() {
+        return neighbourhood;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public LocalDateTime getCreationDateTime() {
+        return creationDateTime;
+    }
+
+    public LocalDateTime getUpdateDateTime() {
+        return updateDateTime;
+    }
+
+    public Place updatePlace(EditPlaceForm editPlaceForm) {
+        this.name = editPlaceForm.name();
+        this.code = editPlaceForm.code();
+        this.city = editPlaceForm.city();
+        this.neighbourhood = editPlaceForm.neighbourhood();
+        this.updateDateTime = LocalDateTime.now();
+        return this;
+    }
+
 
 }
